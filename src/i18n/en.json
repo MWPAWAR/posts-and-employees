@@ -1,0 +1,25 @@
+{
+  "app.tab-posts": "Posts",
+  "app.tab-employees": "Employees",
+
+  "app.error-something-went-wrong": "Something went wrong!",
+  "app.error-no-data": "No data is present!",
+
+  "app.posts.label": "Posts",
+  "app.posts.body": "Description: {body}",
+  "app.posts.btn-view-label": "View",
+  "app.posts.post.description": "Description: ",
+
+  "app.employees.label": "Employees",
+  "app.employees.address": "Lives at {suite}, {street}, {city} - {zipcode}",
+  "app.employees.btn-view-label": "View",
+
+  "app.employees.employee.name": "{name} ({username})",
+  "app.employees.employee.email": "Email: ",
+  "app.employees.employee.phone": "Phone: ",
+  "app.employees.employee.website": "Website: ",
+  "app.employees.employee.address-label": "Address: ",
+  "app.employees.employee.address-val": "{suite}, {street}, {city} - {zipcode}",
+  "app.employees.employee.company": "Company Name: ",
+  "app.employees.employee.company-val": "{companyName} -- \"{catchPhrase}\""
+}

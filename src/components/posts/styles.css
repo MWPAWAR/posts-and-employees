@@ -1,0 +1,18 @@
+.root {
+  width: 20rem;
+  margin: 1rem;
+}
+
+.heading {
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.post-details {
+  margin: 1rem;
+}

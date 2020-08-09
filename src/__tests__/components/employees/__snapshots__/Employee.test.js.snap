@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Employee it renders correctly with default data 1`] = `
+<WithStyles(ForwardRef(Card))
+  className="root"
+>
+  <WithStyles(ForwardRef(CardActionArea))>
+    <WithStyles(ForwardRef(CardContent))>
+      <WithStyles(ForwardRef(Typography))
+        component="h2"
+        gutterBottom={true}
+        variant="h5"
+      >
+        Glenna Reichert
+      </WithStyles(ForwardRef(Typography))>
+      <WithStyles(ForwardRef(Typography))
+        color="textSecondary"
+        component="p"
+        variant="body1"
+      >
+        <FormattedMessage
+          id="app.employees.address"
+          values={
+            Object {
+              "city": "Bartholomebury",
+              "street": "Dayna Park",
+              "suite": "Suite 449",
+              "zipcode": "76495-3109",
+            }
+          }
+        />
+      </WithStyles(ForwardRef(Typography))>
+    </WithStyles(ForwardRef(CardContent))>
+  </WithStyles(ForwardRef(CardActionArea))>
+  <WithStyles(ForwardRef(CardActions))>
+    <Link
+      to="/employees/9"
+    >
+      <WithStyles(ForwardRef(Button))
+        color="primary"
+        size="large"
+      >
+        <FormattedMessage
+          id="app.employees.btn-view-label"
+        />
+      </WithStyles(ForwardRef(Button))>
+    </Link>
+  </WithStyles(ForwardRef(CardActions))>
+</WithStyles(ForwardRef(Card))>
+`;

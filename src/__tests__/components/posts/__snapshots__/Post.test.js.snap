@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Post it renders correctly with default data 1`] = `
+<WithStyles(ForwardRef(Card))
+  className="root"
+>
+  <WithStyles(ForwardRef(CardActionArea))>
+    <WithStyles(ForwardRef(CardContent))>
+      <WithStyles(ForwardRef(Typography))
+        component="h2"
+        gutterBottom={true}
+        variant="h5"
+      >
+        Welcome to Posts
+      </WithStyles(ForwardRef(Typography))>
+      <WithStyles(ForwardRef(Typography))
+        color="textSecondary"
+        component="p"
+        variant="body1"
+      >
+        Lorem Ipsum Lorem Ipsum Lorem Ipsum
+      </WithStyles(ForwardRef(Typography))>
+    </WithStyles(ForwardRef(CardContent))>
+  </WithStyles(ForwardRef(CardActionArea))>
+  <WithStyles(ForwardRef(CardActions))>
+    <Link
+      to="/posts/1"
+    >
+      <WithStyles(ForwardRef(Button))
+        color="primary"
+        size="large"
+      >
+        <FormattedMessage
+          id="app.posts.btn-view-label"
+        />
+      </WithStyles(ForwardRef(Button))>
+    </Link>
+  </WithStyles(ForwardRef(CardActions))>
+</WithStyles(ForwardRef(Card))>
+`;

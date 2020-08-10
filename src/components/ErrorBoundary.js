@@ -1,6 +1,7 @@
 import React from 'react';
-import Typography from '@material-ui/core/Typography';
 import { FormattedMessage } from 'react-intl';
+
+import Error from '../components/core/error/Error';
 
 class ErrorBoundary extends React.Component {
   state = {
@@ -18,9 +19,9 @@ class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       return (
-        <Typography variant="h5" color="error" component="div" align="center">
-          <FormattedMessage id="app.error-something-went-wrong" />
-        </Typography>
+        <Error
+          message={<FormattedMessage id="app.error-something-went-wrong" />}
+        />
       );
     }
 

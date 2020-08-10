@@ -1,38 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
+import Card from '../core/card/Card';
+import Button, { BUTTON_TYPES } from '../core/button/Button';
 
 const Employee = ({
   id,
   address: { suite, street, city, zipcode },
   name,
 }) => (
-  <Card className="root">
-    <CardActionArea>
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="h2">{name}</Typography>
-        <Typography variant="body1" color="textSecondary" component="p">
-          <FormattedMessage
-            id="app.employees.address"
-            values={{ suite, street, city, zipcode }}
-          />
-        </Typography>
-      </CardContent>
-    </CardActionArea>
-    <CardActions>
-      <Link to={`/employees/${id}`}>
-        <Button size="large" color="primary">
-          <FormattedMessage id="app.employees.btn-view-label" />
-        </Button>
-      </Link>
-    </CardActions>
+  <Card
+    title={name}
+    body={<FormattedMessage id="app.employees.address" values={{ suite, street, city, zipcode }} />}
+  >
+    <Link to={`/employees/${id}`}>
+      <Button
+        type={BUTTON_TYPES.LINK}
+        text={<FormattedMessage id="app.employees.btn-view-label" />}
+      />
+    </Link>
   </Card>
 );
 

@@ -1,0 +1,11 @@
+.details {
+  margin: 1rem;
+  width: 100%;
+}
+
+.error {
+  color: red;
+  font-size: 1.4rem;
+  text-align: center;
+  padding: 2rem;
+}

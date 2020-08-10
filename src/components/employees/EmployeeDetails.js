@@ -1,23 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 
+import Card from '../core/card/Card';
+import DetailsRow from '../core/details-row/DetailsRow';
+import Error from '../core/error/Error';
 import getEmployeeById from '../../selectors/employee';
 import './styles.css';
 
 const EmployeeDetails = ({ employee }) => {
   if (!employee) {
     return (
-      <Card className="employee-details">
-        <Typography variant="subtitle2" color="error" component="div" align="center">
-          <FormattedMessage id="app.error-no-data" />
-        </Typography>
-      </Card>
-    );
+      <Error
+        message={<FormattedMessage id="app.error-no-data" />}
+      />
+    )
   }
 
   const {
@@ -26,73 +24,48 @@ const EmployeeDetails = ({ employee }) => {
     email,
     phone,
     website,
-    address: {
-      suite,
-      street,
-      city,
-      zipcode
-    },
-    company: {
-      name: companyName,
-      catchPhrase,
-    }
+    address,
+    company
   } = employee;
 
   return (
     <Card className="employee-details">
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="h2">
+      <h3>
+        <FormattedMessage
+          id="app.employees.employee.name"
+          values={{ name, username }}
+        />
+      </h3>
+      <DetailsRow
+        label={<FormattedMessage id="app.employees.employee.email" />}
+        value={email}
+      />
+      <DetailsRow
+        label={<FormattedMessage id="app.employees.employee.phone" />}
+        value={phone}
+      />
+      <DetailsRow
+        label={<FormattedMessage id="app.employees.employee.website" />}
+        value={<a href={`//${website}`} target="blank">{website}</a>}
+      />
+      <DetailsRow
+        label={<FormattedMessage id="app.employees.employee.address-label" />}
+        value={
           <FormattedMessage
-            id="app.employees.employee.name"
-            values={{ name, username }}
+            id="app.employees.employee.address-val"
+            values={{ suite: address.suite, street: address.street, city: address.city, zipcode: address.zipcode }}
           />
-        </Typography>
-
-        <Typography variant="body2" color="textSecondary" component="div">
-          <Typography color="textPrimary" component="span">
-            <FormattedMessage id="app.employees.employee.email" />
-          </Typography>
-          <Typography color="textSecondary" component="span">{email}</Typography>
-        </Typography>
-
-        <Typography variant="body2" color="textSecondary" component="div">
-          <Typography color="textPrimary" component="span">
-            <FormattedMessage id="app.employees.employee.phone" />
-          </Typography>
-          <Typography color="textSecondary" component="span">{phone}</Typography>
-        </Typography>
-
-        <Typography variant="body2" color="textSecondary" component="div">
-          <Typography color="textPrimary" component="span">
-            <FormattedMessage id="app.employees.employee.website" />
-          </Typography>
-          <a href={`//${website}`} target="blank"><Typography color="primary" component="span">{website}</Typography></a>
-        </Typography>
-
-        <Typography variant="body2" color="textSecondary" component="div">
-          <Typography color="textPrimary" component="span">
-            <FormattedMessage id="app.employees.employee.address-label" />
-          </Typography>
-          <Typography color="textSecondary" component="span">
-            <FormattedMessage
-              id="app.employees.employee.address-val"
-              values={{ suite, street, city, zipcode }}
-            />
-          </Typography>
-        </Typography>
-
-        <Typography variant="body2" color="textSecondary" component="div">
-          <Typography color="textPrimary" component="span">
-            <FormattedMessage id="app.employees.employee.company" />
-          </Typography>
-          <Typography color="textSecondary" component="span">
-            <FormattedMessage
-              id="app.employees.employee.company-val"
-              values={{ companyName, catchPhrase }}
-            />
-          </Typography>
-        </Typography>
-      </CardContent>
+        }
+      />
+      <DetailsRow
+        label={<FormattedMessage id="app.employees.employee.company" />}
+        value={
+          <FormattedMessage
+            id="app.employees.employee.company-val"
+            values={{ companyName: company.name, catchPhrase: company.catchPhrase }}
+          />
+        }
+      />
     </Card>
   );
 };

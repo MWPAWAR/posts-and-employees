@@ -5,10 +5,10 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import './index.css';
 import App from './App';
 import LocaleProvider from './i18n';
 import rootReducer from './reducers';
+import './index.css';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 

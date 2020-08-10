@@ -1,39 +1,33 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Paper from '@material-ui/core/Paper';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
 
 import Posts from './components/posts/Posts';
 import Employees from './components/employees/Employees';
 import Post from './components/posts/PostDetails';
 import Employee from './components/employees/EmployeeDetails';
 import ErrorBoundary from './components/ErrorBoundary';
-import { APP_LINKS, getActiveTabIndex, TABS } from './helpers/url-helper';
+import { APP_LINKS, TABS, getActiveTab } from './helpers/url-helper';
 
 const App = ({ history, location }) => {
-  const [tabIndex, setTabIndex] = useState(getActiveTabIndex(location));
-
-  const handleTabChange = (_, newTabIndex) => {
-    setTabIndex(newTabIndex);
-    history.push(`/${TABS[newTabIndex]}`);
+  const activeTab = getActiveTab(location);
+  const handleTabChange = tab => {
+    history.push(`/${tab}`);
   };
 
   return (
     <ErrorBoundary>
-      <Paper>
-        <Tabs
-          value={tabIndex}
-          onChange={handleTabChange}
-          indicatorColor="primary"
-          textColor="primary"
-          centered
-        >
-          <Tab label="Posts" />
-          <Tab label="Employees" />
-        </Tabs>
-      </Paper>
+      <div className="tabs-container">
+        {TABS.map(tab => (
+          <div
+            className={`tab-item ${tab === activeTab ? 'active' : ''}`}
+            onClick={() => { handleTabChange(tab); }}
+          >
+            <FormattedMessage id={`app.${tab}.label`} />
+          </div>
+        ))}
+      </div>
       <Switch>
         <Route exact path={APP_LINKS.POSTS} component={Posts} />
         <Route exact path={APP_LINKS.POST_DETAILS} component={Post} />

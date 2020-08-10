@@ -6,15 +6,15 @@ export const APP_LINKS = {
   EMPLOYEE_DETAILS: '/employees/:empId',
 };
 
-const DEFAULT_TAB_INDEX = 0;
+const DEFAULT_TAB = 'posts';
 
-export const getActiveTabIndex = (location) => {
+export const getActiveTab = (location) => {
   const { pathname } = location;
   const route = pathname.split('/')[1]
 
   if (!route) {
-    return DEFAULT_TAB_INDEX;
+    return DEFAULT_TAB;
   }
 
-  return TABS.indexOf(route);
+  return route;
 }

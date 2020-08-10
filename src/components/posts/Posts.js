@@ -2,6 +2,7 @@ import React, { useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 
+import Spinner from '../core/spinner/Spinner';
 import fetchPosts from '../../actions/posts';
 import getPosts from '../../selectors/posts';
 import Post from './Post';
@@ -15,6 +16,10 @@ const Posts = ({
   useEffect(() => {
     if (!hasPosts) fetchPosts();
   }, []);
+
+  if (!hasPosts) {
+    return <div className="container"><Spinner /></div>
+  }
 
   const postItems = posts.map(
     post =>

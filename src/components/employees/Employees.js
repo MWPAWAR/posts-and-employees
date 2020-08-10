@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 
 import Employee from './Employee';
+import Spinner from '../core/spinner/Spinner';
 import getEmployees from '../../selectors/employees';
 import fetchEmployees from '../../actions/employees';
 import './styles.css'
@@ -16,6 +17,10 @@ const Employees = ({
   useEffect(() => {
     if (!hasEmployees) fetchEmployees();
   }, []);
+
+  if (!hasEmployees) {
+    return <div className="container"><Spinner /></div>
+  }
 
   const employeeItems = 
     employees.map((employee) => (

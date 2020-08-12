@@ -5,5 +5,5 @@ import employees from './employees';
 
 export default combineReducers({
   posts,
-  employees
+  employees,
 });

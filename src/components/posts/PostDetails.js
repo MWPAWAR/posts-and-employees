@@ -7,35 +7,26 @@ import Card from '../core/card/Card';
 import DataUnavailable from '../core/error/Error';
 import DetailsRow from '../core/details-row/DetailsRow';
 import getPostById from '../../selectors/post';
-import './styles.css';
+import styles from './styles.module.css';
 
-const PostDetails = ({ post }) => (
-  post
-    ? (
-      <Card className="post-details" title={post.title}>
-        <DetailsRow
-          label={<FormattedMessage id="app.posts.post.description" />}
-          value={post.body}
-        />
-      </Card>
-    ) : (
-      <DataUnavailable
-        message={<FormattedMessage id="app.error-no-data" />}
-      />
-    )
-);
+export const PostDetails = ({ post }) =>
+  post ? (
+    <Card className={styles.postDetails} title={post.title}>
+      <DetailsRow label={<FormattedMessage id="app.posts.post.description" />} value={post.body} />
+    </Card>
+  ) : (
+    <DataUnavailable message={<FormattedMessage id="app.error-no-data" />} />
+  );
 
 const mapStateToPros = (state, props) => ({
-  post: getPostById(state, props.match.params.postId)
+  post: getPostById(state, props.match.params.postId),
 });
 
 PostDetails.propTypes = {
   post: PropTypes.shape({
     title: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
-  })
-}
-
-export { PostDetails }; // exporting unconnected component from here for teting.
+  }),
+};
 
 export default connect(mapStateToPros)(PostDetails);

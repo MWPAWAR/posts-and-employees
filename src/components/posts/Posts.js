@@ -6,47 +6,40 @@ import Spinner from '../core/spinner/Spinner';
 import fetchPosts from '../../actions/posts';
 import getPosts from '../../selectors/posts';
 import Post from './Post';
-import './styles.css';
+import styles from './styles.module.css';
 
-const Posts = ({
-  fetchPosts,
-  hasPosts,
-  posts
-}) => {
+const Posts = ({ fetchPosts, hasPosts, posts }) => {
   useEffect(() => {
-    if (!hasPosts) fetchPosts();
+    fetchPosts();
   }, []);
 
   if (!hasPosts) {
-    return <div className="container"><Spinner /></div>
+    return (
+      <div className={styles.container}>
+        <Spinner />
+      </div>
+    );
   }
 
-  const postItems = posts.map(
-    post =>
-      <Post 
-        id={post.id}
-        title={post.title}
-        body={post.body}
-      />
-  );
+  const postItems = posts.map((post) => <Post id={post.id} title={post.title} body={post.body} />);
 
   return (
     <Fragment>
-      <h2 className="heading">
+      <h2 className={styles.heading}>
         <FormattedMessage id="app.posts.label" />
       </h2>
-      <div className="container">{postItems}</div>
+      <div className={styles.container}>{postItems}</div>
     </Fragment>
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const posts = getPosts(state);
   const hasPosts = posts.length > 0;
 
   return {
     posts,
-    hasPosts
+    hasPosts,
   };
 };
 

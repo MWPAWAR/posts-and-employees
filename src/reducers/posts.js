@@ -5,11 +5,11 @@ const INITIAL_STATE = { isError: false };
 export default (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
 
-  switch(type) {
+  switch (type) {
     case FETCH_POSTS:
       return { ...state };
     case FETCH_POSTS_SUCCESS:
-      return { ...state, ...payload, isError: false  };
+      return { ...state, ...payload, isError: false };
     case FETCH_POSTS_FAILURE:
       return { ...state, isError: true };
     default:

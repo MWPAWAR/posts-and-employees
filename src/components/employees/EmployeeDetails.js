@@ -7,53 +7,41 @@ import Card from '../core/card/Card';
 import DetailsRow from '../core/details-row/DetailsRow';
 import Error from '../core/error/Error';
 import getEmployeeById from '../../selectors/employee';
-import './styles.css';
+import styles from './styles.module.css';
 
-const EmployeeDetails = ({ employee }) => {
+export const EmployeeDetails = ({ employee }) => {
   if (!employee) {
-    return (
-      <Error
-        message={<FormattedMessage id="app.error-no-data" />}
-      />
-    )
+    return <Error message={<FormattedMessage id="app.error-no-data" />} />;
   }
 
-  const {
-    name,
-    username,
-    email,
-    phone,
-    website,
-    address,
-    company
-  } = employee;
+  const { name, username, email, phone, website, address, company } = employee;
 
   return (
-    <Card className="employee-details">
+    <Card className={styles.employeeDetails}>
       <h3>
-        <FormattedMessage
-          id="app.employees.employee.name"
-          values={{ name, username }}
-        />
+        <FormattedMessage id="app.employees.employee.name" values={{ name, username }} />
       </h3>
-      <DetailsRow
-        label={<FormattedMessage id="app.employees.employee.email" />}
-        value={email}
-      />
-      <DetailsRow
-        label={<FormattedMessage id="app.employees.employee.phone" />}
-        value={phone}
-      />
+      <DetailsRow label={<FormattedMessage id="app.employees.employee.email" />} value={email} />
+      <DetailsRow label={<FormattedMessage id="app.employees.employee.phone" />} value={phone} />
       <DetailsRow
         label={<FormattedMessage id="app.employees.employee.website" />}
-        value={<a href={`//${website}`} target="blank">{website}</a>}
+        value={
+          <a href={`//${website}`} target="_blank" rel="noopener noreferrer">
+            {website}
+          </a>
+        }
       />
       <DetailsRow
         label={<FormattedMessage id="app.employees.employee.address-label" />}
         value={
           <FormattedMessage
             id="app.employees.employee.address-val"
-            values={{ suite: address.suite, street: address.street, city: address.city, zipcode: address.zipcode }}
+            values={{
+              suite: address.suite,
+              street: address.street,
+              city: address.city,
+              zipcode: address.zipcode,
+            }}
           />
         }
       />
@@ -62,7 +50,10 @@ const EmployeeDetails = ({ employee }) => {
         value={
           <FormattedMessage
             id="app.employees.employee.company-val"
-            values={{ companyName: company.name, catchPhrase: company.catchPhrase }}
+            values={{
+              companyName: company.name,
+              catchPhrase: company.catchPhrase,
+            }}
           />
         }
       />
@@ -71,7 +62,7 @@ const EmployeeDetails = ({ employee }) => {
 };
 
 const mapStateToPros = (state, props) => ({
-  employee: getEmployeeById(state, props.match.params.empId)
+  employee: getEmployeeById(state, props.match.params.empId),
 });
 
 EmployeeDetails.propTypes = {
@@ -89,12 +80,9 @@ EmployeeDetails.propTypes = {
     }),
     company: PropTypes.shape({
       name: PropTypes.string.isRequired,
-      catchPhrase: PropTypes.string.isRequired,
-      bs: PropTypes.string.isRequired,
-    })
-  })
+      catchPhrase: PropTypes.string.isRequired
+    }),
+  }),
 };
-
-export { EmployeeDetails };
 
 export default connect(mapStateToPros)(EmployeeDetails);

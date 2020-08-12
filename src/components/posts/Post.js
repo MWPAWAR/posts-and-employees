@@ -6,20 +6,10 @@ import { FormattedMessage } from 'react-intl';
 import Card from '../core/card/Card';
 import Button, { BUTTON_TYPES } from '../core/button/Button';
 
-const Post = ({
-  id,
-  body,
-  title
-}) => (
-  <Card
-    title={title}
-    body={body}
-  >
+const Post = ({ id, body, title }) => (
+  <Card title={title} body={body}>
     <Link to={`/posts/${id}`}>
-      <Button
-        type={BUTTON_TYPES.LINK}
-        text={<FormattedMessage id="app.posts.btn-view-label" />}
-      />
+      <Button type={BUTTON_TYPES.LINK} text={<FormattedMessage id="app.posts.btn-view-label" />} />
     </Link>
   </Card>
 );
@@ -27,7 +17,7 @@ const Post = ({
 Post.propTypes = {
   id: PropTypes.number.isRequired,
   body: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
 };
 
 export default Post;

@@ -7,48 +7,42 @@ import Employee from './Employee';
 import Spinner from '../core/spinner/Spinner';
 import getEmployees from '../../selectors/employees';
 import fetchEmployees from '../../actions/employees';
-import './styles.css'
+import styles from './styles.module.css';
 
-const Employees = ({
-  employees,
-  fetchEmployees,
-  hasEmployees
-}) => {
+export const Employees = ({ employees, fetchEmployees, hasEmployees }) => {
   useEffect(() => {
-    if (!hasEmployees) fetchEmployees();
+    fetchEmployees();
   }, []);
 
   if (!hasEmployees) {
-    return <div className="container"><Spinner /></div>
+    return (
+      <div className={styles.container}>
+        <Spinner />
+      </div>
+    );
   }
 
-  const employeeItems = 
-    employees.map((employee) => (
-      <Employee
-        id={employee.id}
-        name={employee.name}
-        address={employee.address}
-      />
-    )
-  );
+  const employeeItems = employees.map((employee) => (
+    <Employee id={employee.id} name={employee.name} address={employee.address} />
+  ));
 
   return (
     <Fragment>
-      <h2 className="heading">
+      <h2 className={styles.heading}>
         <FormattedMessage id="app.employees.label" />
       </h2>
-      <div className="container">{employeeItems}</div>
+      <div className={styles.container}>{employeeItems}</div>
     </Fragment>
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const employees = getEmployees(state);
   const hasEmployees = employees.length > 0;
 
   return {
     employees,
-    hasEmployees
+    hasEmployees,
   };
 };
 
@@ -57,13 +51,11 @@ Employees.propTypes = {
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
-      address: PropTypes.object.isRequired
+      address: PropTypes.object.isRequired,
     })
   ),
   fetchEmployees: PropTypes.func.isRequired,
-  hasEmployees: PropTypes.bool.isRequired
+  hasEmployees: PropTypes.bool.isRequired,
 };
-
-export { Employees }; // exporting a constant from here for testing.
 
 export default connect(mapStateToProps, { fetchEmployees })(Employees);

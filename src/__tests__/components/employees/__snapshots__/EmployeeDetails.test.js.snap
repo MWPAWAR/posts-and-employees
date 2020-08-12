@@ -1,165 +1,99 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`EmployeeDetails renders correctly with default data 1`] = `
-<WithStyles(ForwardRef(Card))
-  className="employee-details"
+<Card
+  className="employeeDetails"
 >
-  <WithStyles(ForwardRef(CardContent))>
-    <WithStyles(ForwardRef(Typography))
-      component="h2"
-      gutterBottom={true}
-      variant="h5"
-    >
+  <h3>
+    <FormattedMessage
+      id="app.employees.employee.name"
+      values={
+        Object {
+          "name": "Glenna Reichert",
+          "username": "Delphine",
+        }
+      }
+    />
+  </h3>
+  <DetailsRow
+    label={
       <FormattedMessage
-        id="app.employees.employee.name"
+        id="app.employees.employee.email"
+      />
+    }
+    value="Chaim_McDermott@dana.io"
+  />
+  <DetailsRow
+    label={
+      <FormattedMessage
+        id="app.employees.employee.phone"
+      />
+    }
+    value="(775)976-6794 x41206"
+  />
+  <DetailsRow
+    label={
+      <FormattedMessage
+        id="app.employees.employee.website"
+      />
+    }
+    value={
+      <a
+        href="//conrad.com"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        conrad.com
+      </a>
+    }
+  />
+  <DetailsRow
+    label={
+      <FormattedMessage
+        id="app.employees.employee.address-label"
+      />
+    }
+    value={
+      <FormattedMessage
+        id="app.employees.employee.address-val"
         values={
           Object {
-            "name": "Glenna Reichert",
-            "username": "Delphine",
+            "city": "Bartholomebury",
+            "street": "Dayna Park",
+            "suite": "Suite 449",
+            "zipcode": "76495-3109",
           }
         }
       />
-    </WithStyles(ForwardRef(Typography))>
-    <WithStyles(ForwardRef(Typography))
-      color="textSecondary"
-      component="div"
-      variant="body2"
-    >
-      <WithStyles(ForwardRef(Typography))
-        color="textPrimary"
-        component="span"
-      >
-        <FormattedMessage
-          id="app.employees.employee.email"
-        />
-      </WithStyles(ForwardRef(Typography))>
-      <WithStyles(ForwardRef(Typography))
-        color="textSecondary"
-        component="span"
-      >
-        Chaim_McDermott@dana.io
-      </WithStyles(ForwardRef(Typography))>
-    </WithStyles(ForwardRef(Typography))>
-    <WithStyles(ForwardRef(Typography))
-      color="textSecondary"
-      component="div"
-      variant="body2"
-    >
-      <WithStyles(ForwardRef(Typography))
-        color="textPrimary"
-        component="span"
-      >
-        <FormattedMessage
-          id="app.employees.employee.phone"
-        />
-      </WithStyles(ForwardRef(Typography))>
-      <WithStyles(ForwardRef(Typography))
-        color="textSecondary"
-        component="span"
-      >
-        (775)976-6794 x41206
-      </WithStyles(ForwardRef(Typography))>
-    </WithStyles(ForwardRef(Typography))>
-    <WithStyles(ForwardRef(Typography))
-      color="textSecondary"
-      component="div"
-      variant="body2"
-    >
-      <WithStyles(ForwardRef(Typography))
-        color="textPrimary"
-        component="span"
-      >
-        <FormattedMessage
-          id="app.employees.employee.website"
-        />
-      </WithStyles(ForwardRef(Typography))>
-      <a
-        href="//conrad.com"
-        target="blank"
-      >
-        <WithStyles(ForwardRef(Typography))
-          color="primary"
-          component="span"
-        >
-          conrad.com
-        </WithStyles(ForwardRef(Typography))>
-      </a>
-    </WithStyles(ForwardRef(Typography))>
-    <WithStyles(ForwardRef(Typography))
-      color="textSecondary"
-      component="div"
-      variant="body2"
-    >
-      <WithStyles(ForwardRef(Typography))
-        color="textPrimary"
-        component="span"
-      >
-        <FormattedMessage
-          id="app.employees.employee.address-label"
-        />
-      </WithStyles(ForwardRef(Typography))>
-      <WithStyles(ForwardRef(Typography))
-        color="textSecondary"
-        component="span"
-      >
-        <FormattedMessage
-          id="app.employees.employee.address-val"
-          values={
-            Object {
-              "city": "Bartholomebury",
-              "street": "Dayna Park",
-              "suite": "Suite 449",
-              "zipcode": "76495-3109",
-            }
+    }
+  />
+  <DetailsRow
+    label={
+      <FormattedMessage
+        id="app.employees.employee.company"
+      />
+    }
+    value={
+      <FormattedMessage
+        id="app.employees.employee.company-val"
+        values={
+          Object {
+            "catchPhrase": "Switchable contextually-based project",
+            "companyName": "Yost and Sons",
           }
-        />
-      </WithStyles(ForwardRef(Typography))>
-    </WithStyles(ForwardRef(Typography))>
-    <WithStyles(ForwardRef(Typography))
-      color="textSecondary"
-      component="div"
-      variant="body2"
-    >
-      <WithStyles(ForwardRef(Typography))
-        color="textPrimary"
-        component="span"
-      >
-        <FormattedMessage
-          id="app.employees.employee.company"
-        />
-      </WithStyles(ForwardRef(Typography))>
-      <WithStyles(ForwardRef(Typography))
-        color="textSecondary"
-        component="span"
-      >
-        <FormattedMessage
-          id="app.employees.employee.company-val"
-          values={
-            Object {
-              "catchPhrase": "Switchable contextually-based project",
-              "companyName": "Yost and Sons",
-            }
-          }
-        />
-      </WithStyles(ForwardRef(Typography))>
-    </WithStyles(ForwardRef(Typography))>
-  </WithStyles(ForwardRef(CardContent))>
-</WithStyles(ForwardRef(Card))>
+        }
+      />
+    }
+  />
+</Card>
 `;
 
 exports[`EmployeeDetails renders data unavailable message if employee is undefined 1`] = `
-<WithStyles(ForwardRef(Card))
-  className="employee-details"
->
-  <WithStyles(ForwardRef(Typography))
-    align="center"
-    color="error"
-    component="div"
-    variant="subtitle2"
-  >
+<DataUnavailable
+  message={
     <FormattedMessage
       id="app.error-no-data"
     />
-  </WithStyles(ForwardRef(Typography))>
-</WithStyles(ForwardRef(Card))>
+  }
+/>
 `;

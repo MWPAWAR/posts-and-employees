@@ -1,52 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PostDetails renders correctly with default data 1`] = `
-<WithStyles(ForwardRef(Card))
-  className="post-details"
+<Card
+  className="postDetails"
+  title="Welcome to Posts"
 >
-  <WithStyles(ForwardRef(CardContent))>
-    <WithStyles(ForwardRef(Typography))
-      component="h2"
-      gutterBottom={true}
-      variant="h5"
-    >
-      Welcome to Posts
-    </WithStyles(ForwardRef(Typography))>
-    <WithStyles(ForwardRef(Typography))
-      component="div"
-    >
-      <WithStyles(ForwardRef(Typography))
-        color="textPrimary"
-        component="span"
-      >
-        <FormattedMessage
-          id="app.posts.post.description"
-        />
-      </WithStyles(ForwardRef(Typography))>
-      <WithStyles(ForwardRef(Typography))
-        color="textSecondary"
-        component="span"
-      >
-        Lorem Ipsum Lorem Ipsum Lorem Ipsum
-      </WithStyles(ForwardRef(Typography))>
-    </WithStyles(ForwardRef(Typography))>
-  </WithStyles(ForwardRef(CardContent))>
-</WithStyles(ForwardRef(Card))>
+  <DetailsRow
+    label={
+      <FormattedMessage
+        id="app.posts.post.description"
+      />
+    }
+    value="Lorem Ipsum Lorem Ipsum Lorem Ipsum"
+  />
+</Card>
 `;
 
 exports[`PostDetails renders data unavailable message if post is undefined 1`] = `
-<WithStyles(ForwardRef(Card))
-  className="post-details"
->
-  <WithStyles(ForwardRef(Typography))
-    align="center"
-    color="error"
-    component="div"
-    variant="subtitle2"
-  >
+<DataUnavailable
+  message={
     <FormattedMessage
       id="app.error-no-data"
     />
-  </WithStyles(ForwardRef(Typography))>
-</WithStyles(ForwardRef(Card))>
+  }
+/>
 `;

@@ -5,11 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import Card from '../core/card/Card';
 import Button, { BUTTON_TYPES } from '../core/button/Button';
 
-const Employee = ({
-  id,
-  address: { suite, street, city, zipcode },
-  name,
-}) => (
+const Employee = ({ id, address: { suite, street, city, zipcode }, name }) => (
   <Card
     title={name}
     body={<FormattedMessage id="app.employees.address" values={{ suite, street, city, zipcode }} />}
@@ -30,8 +26,8 @@ Employee.propTypes = {
     street: PropTypes.string.isRequired,
     city: PropTypes.string.isRequired,
     suite: PropTypes.string.isRequired,
-    zipcode: PropTypes.string.isRequired
-  }).isRequired
+    zipcode: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default Employee;

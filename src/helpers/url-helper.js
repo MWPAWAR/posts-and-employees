@@ -1,20 +1,12 @@
-export const TABS = ['posts', 'employees'];
-export const APP_LINKS = {
-  POSTS: '/posts',
-  EMPLOYEES: '/employees',
-  POST_DETAILS: '/posts/:postId',
-  EMPLOYEE_DETAILS: '/employees/:empId',
-};
-
-const DEFAULT_TAB = 'posts';
+import { DEFAULT_TAB } from '../constants/ui-constants';
 
 export const getActiveTab = (location) => {
   const { pathname } = location;
-  const route = pathname.split('/')[1]
+  const route = pathname.split('/')[1];
 
   if (!route) {
     return DEFAULT_TAB;
   }
 
   return route;
-}
+};

@@ -1,9 +1,9 @@
 import React from 'react';
-import './styles.css';
+import styles from './Spinner.module.css';
 
 const Spinner = () => (
-  <div className="spinner">
-    <img src={'/spinner.svg'} />
+  <div className={styles.spinner}>
+    <img src="/spinner.svg" alt="Loading ..." />
   </div>
 );
 

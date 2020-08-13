@@ -5,8 +5,8 @@ import Error from '../components/core/error/Error';
 
 class ErrorBoundary extends React.Component {
   state = {
-    hasError: false
-  }
+    hasError: false,
+  };
 
   static getDerivedStateFromError(error) {
     return { hasError: true };
@@ -18,14 +18,10 @@ class ErrorBoundary extends React.Component {
 
   render() {
     if (this.state.hasError) {
-      return (
-        <Error
-          message={<FormattedMessage id="app.error-something-went-wrong" />}
-        />
-      );
+      return <Error message={<FormattedMessage id="app.error-something-went-wrong" />} />;
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 

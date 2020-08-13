@@ -10,26 +10,6 @@
   text-align: center;
 }
 
-.success {
-  background-color: green;
-  color: white;
-}
-
-.info {
-  background-color: #1976d2;
-  color: white
-}
-
-.warning {
-  background-color: orange;
-  color: white;
-}
-
-.danger {
-  background-color: red;
-  color: white
-}
-
 .link {
   background-color: transparent;
   color: #1976d2;

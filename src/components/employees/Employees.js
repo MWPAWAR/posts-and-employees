@@ -1,54 +1,36 @@
-import React, { useEffect, Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 
 import Employee from './Employee';
-import Spinner from '../core/spinner/Spinner';
 import getEmployees from '../../selectors/employees';
-import fetchEmployees from '../../actions/employees';
-import './styles.css'
+import fetchData from '../../actions/employees';
+import withSpinner from '../hocs/with-spinner';
+import styles from './styles.module.css';
 
-const Employees = ({
-  employees,
-  fetchEmployees,
-  hasEmployees
-}) => {
-  useEffect(() => {
-    if (!hasEmployees) fetchEmployees();
-  }, []);
-
-  if (!hasEmployees) {
-    return <div className="container"><Spinner /></div>
-  }
-
-  const employeeItems = 
-    employees.map((employee) => (
-      <Employee
-        id={employee.id}
-        name={employee.name}
-        address={employee.address}
-      />
-    )
-  );
-
+export const Employees = ({ employees }) => {
   return (
-    <Fragment>
-      <h2 className="heading">
+    <>
+      <h2 className={styles.heading}>
         <FormattedMessage id="app.employees.label" />
       </h2>
-      <div className="container">{employeeItems}</div>
-    </Fragment>
+      <div className={styles.container}>
+        {employees.map((employee) => (
+          <Employee id={employee.id} name={employee.name} address={employee.address} />
+        ))}
+      </div>
+    </>
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const employees = getEmployees(state);
-  const hasEmployees = employees.length > 0;
+  const isDataAvailable = employees.length > 0;
 
   return {
     employees,
-    hasEmployees
+    isDataAvailable,
   };
 };
 
@@ -57,13 +39,11 @@ Employees.propTypes = {
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
-      address: PropTypes.object.isRequired
+      address: PropTypes.object.isRequired,
     })
   ),
-  fetchEmployees: PropTypes.func.isRequired,
-  hasEmployees: PropTypes.bool.isRequired
+  fetchData: PropTypes.func.isRequired,
+  isDataAvailable: PropTypes.bool.isRequired,
 };
 
-export { Employees }; // exporting a constant from here for testing.
-
-export default connect(mapStateToProps, { fetchEmployees })(Employees);
+export default connect(mapStateToProps, { fetchData })(withSpinner(Employees));

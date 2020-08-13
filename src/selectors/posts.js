@@ -1,8 +1,5 @@
 import { createSelector } from 'reselect';
 
-const getState = state => state;
+const getState = (state) => state;
 
-export default createSelector(
-  getState,
-  state => state.posts.data || []
-);
+export default createSelector(getState, (state) => state.posts.data || []);

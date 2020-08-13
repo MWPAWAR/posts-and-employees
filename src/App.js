@@ -1,51 +1,46 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import classNames from 'classnames';
+import { Switch, Route, Redirect, Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 
-import Posts from './components/posts/Posts';
-import Employees from './components/employees/Employees';
-import Post from './components/posts/PostDetails';
-import Employee from './components/employees/EmployeeDetails';
+import { Posts, PostDetails } from './components/posts';
+import { Employees, EmployeeDetails } from './components/employees';
+
 import ErrorBoundary from './components/ErrorBoundary';
-import { APP_LINKS, TABS, getActiveTab } from './helpers/url-helper';
+import { getActiveTab } from './helpers/url-helper';
+import { TABS } from './constants/ui-constants';
+import { APP_LINKS } from './constants/url-constants';
+import styles from './App.module.css';
 
-const App = ({ history, location }) => {
-  const activeTab = getActiveTab(location);
-  const handleTabChange = tab => {
-    history.push(`/${tab}`);
-  };
-
-  return (
-    <ErrorBoundary>
-      <div className="tabs-container">
-        {TABS.map(tab => (
-          <div
-            className={`tab-item ${tab === activeTab ? 'active' : ''}`}
-            onClick={() => { handleTabChange(tab); }}
-          >
-            <FormattedMessage id={`app.${tab}.label`} />
-          </div>
-        ))}
-      </div>
-      <Switch>
-        <Route exact path={APP_LINKS.POSTS} component={Posts} />
-        <Route exact path={APP_LINKS.POST_DETAILS} component={Post} />
-        <Route exact path={APP_LINKS.EMPLOYEES} component={Employees} />
-        <Route exact path={APP_LINKS.EMPLOYEE_DETAILS} component={Employee} />
-        <Redirect to={APP_LINKS.POSTS} />
-      </Switch>
-    </ErrorBoundary>
-  );
-};
+const App = ({ location }) => (
+  <ErrorBoundary>
+    <div className={styles.tabsContainer}>
+      {TABS.map((tab) => (
+        <Link
+          to={`/${tab}`}
+          className={classNames(styles.tabItem, {
+            [styles.active]: tab === getActiveTab(location),
+          })}
+        >
+          <FormattedMessage id={`app.${tab}.label`} />
+        </Link>
+      ))}
+    </div>
+    <Switch>
+      <Route exact path={APP_LINKS.POSTS} component={Posts} />
+      <Route exact path={APP_LINKS.POST_DETAILS} component={PostDetails} />
+      <Route exact path={APP_LINKS.EMPLOYEES} component={Employees} />
+      <Route exact path={APP_LINKS.EMPLOYEE_DETAILS} component={EmployeeDetails} />
+      <Redirect to={APP_LINKS.POSTS} />
+    </Switch>
+  </ErrorBoundary>
+);
 
 App.propTypes = {
-  history: PropTypes.shape({
-    push: PropTypes.func
-  }).isRequired,
   location: PropTypes.shape({
-    pathname: PropTypes.string
-  }).isRequired
-}
+    pathname: PropTypes.string,
+  }).isRequired,
+};
 
 export default App;

@@ -80,7 +80,7 @@ EmployeeDetails.propTypes = {
     }),
     company: PropTypes.shape({
       name: PropTypes.string.isRequired,
-      catchPhrase: PropTypes.string.isRequired
+      catchPhrase: PropTypes.string.isRequired,
     }),
   }),
 };
